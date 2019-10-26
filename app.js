@@ -2,14 +2,17 @@ const express=require('express')
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors')
 
 require('dotenv/config');
 
 app.use(bodyParser.json());
+app.use(express.json({extended:false}))
 
 // Import Routes 
 const postsRoute=require('./routes/posts');
 app.use('/posts',postsRoute)
+app.use(cors())
 
 
 //Middleware
@@ -45,5 +48,5 @@ mongoose.connect(
 
 //How to start listening
 
-app.listen(3000);
+app.listen(3001);
 
